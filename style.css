@@ -1,10 +1,93 @@
 /*
 Theme Name: MotaPhoto
 Theme URI: motaphoto.com
-Author: Kevin Darini
-Author URI: https://openclassrooms.com
 Description: Thème pour le site de Nathalie Mota, photographe event
 Version: 1.0
 Tags: openclassrooms, Nathalie Mota, photo
 Text Domain: motaphoto
 */
+
+/* reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GENERAL  */
+
+:root {
+  font-size: 62.5%;
+  background-color: blue;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-weight: light;
+  font-size: 1.4rem;
+}
+
+h1,
+h2,
+h3,
+a,
+.photo-description {
+  font-family: "Space Mono", monospace;
+}
+
+h1 {
+  font-weight: 700 italic;
+  font-size: 9.6rem;
+}
+
+h2 {
+  font-weight: italic;
+  font-size: 6.6rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.photo-description {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+a {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: black;
+}
+
+/* HEADER  */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 8rem;
+  background-color: white;
+  padding: 0 15rem;
+}
+
+/* .site-title {
+  visibility: hidden;
+} */
+
+.main-navigation ul {
+  display: flex;
+  list-style: none;
+}
+
+.main-navigation ul li {
+  margin-left: 4rem;
+}
+
+.menu-toggle {
+  display: none;
+}

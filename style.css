@@ -7,6 +7,12 @@ Tags: openclassrooms, Nathalie Mota, photo
 Text Domain: motaphoto
 */
 
+/* variables  */
+
+:root {
+  --red-primary: #e00000;
+}
+
 /* reset */
 
 * {
@@ -19,7 +25,7 @@ Text Domain: motaphoto
 
 :root {
   font-size: 62.5%;
-  background-color: blue;
+  background-color: black;
 }
 
 p {
@@ -63,29 +69,80 @@ a {
   color: black;
 }
 
-/* HEADER  */
-
-.site-header {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 8rem;
-  background-color: white;
-  padding: 0 15rem;
-}
-
-/* .site-title {
-  visibility: hidden;
-} */
-
-.main-navigation ul {
-  display: flex;
+li {
   list-style: none;
 }
 
-.main-navigation ul li {
+/* HEADER  */
+
+.menu-desktop {
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.menu-mobile {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--red-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease-in-out;
+}
+
+.top-desktop {
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15rem;
+}
+
+.top-desktop ul {
+  display: flex;
+}
+
+.top-desktop ul li {
   margin-left: 4rem;
+}
+
+.top-desktop ul li a:hover {
+  font-weight: 700;
+}
+
+.top-mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem;
+}
+
+.top-mobile .logo-mobile img {
+  max-width: 13.8rem;
+  height: auto;
+}
+
+.menu-mobile ul {
+  text-align: center;
+}
+
+.menu-mobile ul li a {
+  display: inline-block;
+  color: white;
+  font-size: 4.4rem;
+  margin: 2rem 0;
 }
 
 .menu-toggle {

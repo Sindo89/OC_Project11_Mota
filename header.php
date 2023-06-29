@@ -14,24 +14,51 @@
 <body>
   <header class="site-header">
 
-    <!-- BRANDING  -->
-    <div class="site-branding">
-      <?php
-      the_custom_logo();
-      ?>
-    </div>
-
     <!-- NAV  -->
     <nav id="site-navigation" class="main-navigation">
-      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'mota'); ?></button>
-      <?php
-      wp_nav_menu(
-        array(
-          'theme_location' => 'menu-1',
-          'menu_id'        => 'primary-menu',
-        )
-      );
-      ?>
+      <div class="menu-desktop">
+
+        <div class="top-desktop">
+          <div class="logo-desktop">
+            <?php
+            the_custom_logo();
+            ?>
+          </div>
+          <div class="menu-toggle">
+            <span class="burger"></span>
+          </div>
+          <?php
+          wp_nav_menu(
+            array(
+              'theme_location' => 'menu-1',
+              'menu_id'        => 'primary-menu',
+            )
+          );
+          ?>
+        </div>
+      </div>
+
+
+      <div class="menu-mobile">
+        <div class="top-mobile">
+          <div class="logo-mobile">
+            <?php
+            the_custom_logo();
+            ?>
+          </div>
+          <div class="menu-toggle-close">
+            <span class="cross"></span>
+          </div>
+        </div>
+        <?php
+        wp_nav_menu(
+          array(
+            'theme_location' => 'menu-1',
+            'menu_id'        => 'primary-menu',
+          )
+        );
+        ?>
+      </div>
     </nav>
 
   </header>

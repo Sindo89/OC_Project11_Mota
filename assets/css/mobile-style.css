@@ -1,5 +1,46 @@
-@media only screen and (max-width: 767px) {
-  .menu-toggle {
+@media only screen and (max-width: 1023px) {
+  /* HEADER  */
+
+  .logo-desktop img {
+    max-width: 13.8rem;
+    height: auto;
+  }
+
+  .top-desktop {
+    padding: 0 4rem;
+  }
+
+  .top-desktop .menu-menu-principal-container {
+    display: none;
+  }
+
+  .menu-toggle,
+  .menu-toggle-close {
     display: inline-block;
+  }
+
+  .menu-toggle .burger {
+    display: inline-block;
+    width: 27.42px;
+    height: 18.85px;
+    background-image: url(/wp-content/themes/mota/assets/images/burger.png);
+    background-size: cover;
+  }
+
+  .menu-toggle-close .cross {
+    display: inline-block;
+    width: 21.92px;
+    height: 18.64px;
+    background-image: url(/wp-content/themes/mota/assets/images/cross.png);
+    background-size: cover;
+  }
+
+  .active .menu-desktop {
+    opacity: 0;
+  }
+
+  .active .menu-mobile {
+    top: 0;
+    left: 0;
   }
 }

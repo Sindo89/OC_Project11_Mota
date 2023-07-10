@@ -37,6 +37,7 @@ Ajout d'un emplacement de menu
   register_nav_menus(
     array(
       'menu-1' => esc_html__('Primary', 'mota'),
+      'menu-2' => esc_html__('Footer', 'mota'),
     )
   );
 

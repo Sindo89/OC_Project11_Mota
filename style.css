@@ -28,6 +28,10 @@ Text Domain: motaphoto
   background-color: black;
 }
 
+body {
+  overflow: hidden;
+}
+
 p {
   font-family: "Poppins", sans-serif;
   font-weight: light;
@@ -75,7 +79,7 @@ li {
 
 /* HEADER  */
 
-.menu-desktop {
+.menu-open {
   opacity: 1;
   transition: all 0.4s ease-in-out;
 }

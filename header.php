@@ -12,53 +12,54 @@
 
 
 <body>
-  <header class="site-header">
-
-    <!-- NAV  -->
-    <nav id="site-navigation" class="main-navigation">
-      <div class="menu-desktop">
-
-        <div class="top-desktop">
-          <div class="logo-desktop">
-            <?php
-            the_custom_logo();
-            ?>
-          </div>
-          <div class="menu-toggle">
-            <span class="burger"></span>
-          </div>
-          <?php
-          wp_nav_menu(
-            array(
-              'theme_location' => 'menu-1',
-              'menu_id'        => 'primary-menu',
-            )
-          );
-          ?>
-        </div>
-      </div>
-
-
-      <div class="menu-mobile">
-        <div class="top-mobile">
-          <div class="logo-mobile">
-            <?php
-            the_custom_logo();
-            ?>
-          </div>
-          <div class="menu-toggle-close">
-            <span class="cross"></span>
-          </div>
-        </div>
+  <div class="menu-mobile">
+    <div class="top-mobile">
+      <div class="logo-mobile">
         <?php
-        wp_nav_menu(
-          array(
-            'theme_location' => 'menu-1',
-            'menu_id'        => 'primary-menu',
-          )
-        );
+        the_custom_logo();
         ?>
       </div>
-    </nav>
+      <div class="menu-toggle-close">
+        <span class="cross"></span>
+      </div>
+    </div>
+    <?php
+    wp_nav_menu(
+      array(
+        'theme_location' => 'menu-1',
+        'menu_id'        => 'primary-menu',
+      )
+    );
+    ?>
+  </div>
 
-  </header>
+
+  <div class="menu-open">
+    <header class="site-header">
+
+      <!-- NAV  -->
+      <nav id="site-navigation" class="main-navigation">
+        <div class="menu-desktop">
+
+          <div class="top-desktop">
+            <div class="logo-desktop">
+              <?php
+              the_custom_logo();
+              ?>
+            </div>
+            <div class="menu-toggle">
+              <span class="burger"></span>
+            </div>
+            <?php
+            wp_nav_menu(
+              array(
+                'theme_location' => 'menu-1',
+                'menu_id'        => 'primary-menu',
+              )
+            );
+            ?>
+          </div>
+        </div>
+      </nav>
+
+    </header>

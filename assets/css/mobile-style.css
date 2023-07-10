@@ -35,11 +35,11 @@
     background-size: cover;
   }
 
-  .active .menu-desktop {
+  .menu-open.active {
     opacity: 0;
   }
 
-  .active .menu-mobile {
+  .menu-mobile.active {
     top: 0;
     left: 0;
   }

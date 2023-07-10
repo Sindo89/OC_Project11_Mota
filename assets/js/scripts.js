@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.querySelector(".menu-toggle");
-  const mainNavigation = document.querySelector(".main-navigation");
+  const menuOpen = document.querySelector(".menu-open");
+  const menuMobile = document.querySelector(".menu-mobile");
   const menuToggleClose = document.querySelector(".menu-toggle-close");
 
   menuToggle.addEventListener("click", function () {
-    mainNavigation.classList.toggle("active");
+    menuOpen.classList.toggle("active");
+    menuMobile.classList.toggle("active");
   });
   menuToggleClose.addEventListener("click", function () {
-    mainNavigation.classList.remove("active");
+    menuOpen.classList.remove("active");
+    menuMobile.classList.remove("active");
   });
 });

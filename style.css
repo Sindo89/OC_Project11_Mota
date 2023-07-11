@@ -152,3 +152,22 @@ li {
 .menu-toggle {
   display: none;
 }
+
+/* FOOTER  */
+
+.site-footer {
+  height: 4.4rem;
+  background-color: white;
+  border-top: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#footer-menu {
+  display: flex;
+}
+
+#footer-menu li {
+  margin: 0 4.5rem;
+}

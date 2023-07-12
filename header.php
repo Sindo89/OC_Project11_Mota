@@ -40,7 +40,6 @@
       <!-- NAV  -->
       <nav id="site-navigation" class="main-navigation">
         <div class="menu-desktop">
-
           <div class="top-desktop">
             <div class="logo-desktop">
               <?php

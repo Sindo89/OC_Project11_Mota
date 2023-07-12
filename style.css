@@ -29,7 +29,13 @@ Text Domain: motaphoto
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  background-color: white;
+  position: relative;
+}
+
+main {
+  min-height: 100vh;
 }
 
 p {
@@ -47,12 +53,13 @@ a,
 }
 
 h1 {
-  font-weight: 700 italic;
+  font-weight: 700;
+  font-style: italic;
   font-size: 9.6rem;
 }
 
 h2 {
-  font-weight: italic;
+  font-style: italic;
   font-size: 6.6rem;
 }
 
@@ -170,4 +177,101 @@ li {
 
 #footer-menu li {
   margin: 0 4.5rem;
+}
+
+/* HERO  */
+
+.hero {
+  display: grid;
+  grid-template-areas: "hero";
+  background-color: darkgrey;
+}
+
+.hero > * {
+  grid-area: hero;
+}
+
+.img-hero {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.content-hero {
+  position: relative;
+  align-self: center;
+  text-align: center;
+}
+
+.title-hero {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+}
+
+/* MODALE DE CONTACT  */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-container {
+  background-color: white;
+  height: 80vh;
+  width: 30%;
+  border: black 5px solid;
+  overflow-x: hidden;
+}
+
+.title-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-scroll div {
+  display: flex;
+}
+
+.title-scroll p {
+  font-family: "Space Mono", monospace;
+  font-size: 6.6rem;
+  font-weight: 300;
+  font-style: italic;
+  white-space: nowrap;
+  line-height: 6rem;
+}
+
+.rightToLeft {
+  animation: rightToLeft 150s linear infinite;
+}
+
+@keyframes rightToLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.leftToRight {
+  animation: leftToRight 150s linear reverse infinite;
+}
+
+@keyframes leftToRight {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }

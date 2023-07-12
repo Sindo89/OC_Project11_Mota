@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="contact-form">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae delectus rerum illo molestiae provident, necessitatibus ullam magnam eum quod? Nesciunt dignissimos praesentium voluptate fuga dolore aliquam molestiae neque repudiandae quos explicabo eius, esse adipisci ipsa eaque sit. Consequatur quo, provident suscipit quidem numquam sit voluptate consectetur nobis expedita nesciunt libero.</p>
+      <?php echo do_shortcode('[contact-form-7 id="31" title="Formulaire de contact 1"]'); ?>
     </div>
   </div>
 </div>

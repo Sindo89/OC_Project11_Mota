@@ -30,12 +30,12 @@ Text Domain: motaphoto
 
 body {
   overflow-x: hidden;
-  background-color: white;
   position: relative;
 }
 
 main {
   min-height: 100vh;
+  background-color: white;
 }
 
 p {
@@ -123,8 +123,15 @@ li {
   margin-left: 4rem;
 }
 
+.top-desktop ul li a {
+  display: inline-block;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+}
+
 .top-desktop ul li a:hover {
   font-weight: 700;
+  transform: scale(1.05);
 }
 
 .top-mobile {
@@ -179,12 +186,22 @@ li {
   margin: 0 4.5rem;
 }
 
+#footer-menu li a {
+  display: inline-block;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+}
+
+#footer-menu li:not(.not-link) a:hover {
+  font-weight: 700;
+  transform: scale(1.05);
+}
+
 /* HERO  */
 
 .hero {
   display: grid;
   grid-template-areas: "hero";
-  background-color: darkgrey;
 }
 
 .hero > * {
@@ -195,6 +212,7 @@ li {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+  animation: opacity 1s ease;
 }
 
 .content-hero {
@@ -206,6 +224,16 @@ li {
 .title-hero {
   color: transparent;
   -webkit-text-stroke: 2px white;
+  animation: opacity 2s ease-in;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* MODALE DE CONTACT  */
@@ -220,7 +248,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
+  display: none;
 }
 
 .modal-container {

@@ -1,6 +1,19 @@
 <?php
 
 /*
+ Charger les scripts et styles.
+ */
+function mota_scripts()
+{
+  wp_enqueue_style('mota-style', get_template_directory_uri() . '/style.css');
+  wp_enqueue_style('mota-mobile-style', get_template_directory_uri() . '/assets/css/mobile-style.css');
+  wp_enqueue_script('mota-scripts', get_template_directory_uri() . '/assets/js/scripts.js');
+  wp_enqueue_script('mota-burger-scripts', get_template_directory_uri() . '/assets/js/burger.js');
+}
+add_action('wp_enqueue_scripts', 'mota_scripts');
+
+
+/*
  Paramètres du thème Mota
  */
 function mota_setup()
@@ -63,13 +76,16 @@ add_action('after_setup_theme', 'mota_setup');
 
 
 /*
- Charger les scripts et styles.
- */
-function mota_scripts()
+ Image aléatoire pour la section hero 
+*/
+function random_hero_image()
 {
-  wp_enqueue_style('mota-style', get_template_directory_uri() . '/style.css');
-  wp_enqueue_style('mota-mobile-style', get_template_directory_uri() . '/assets/css/mobile-style.css');
-  wp_enqueue_script('mota-scripts', get_template_directory_uri() . '/assets/js/scripts.js');
-  wp_enqueue_script('mota-burger-scripts', get_template_directory_uri() . '/assets/js/burger.js');
+  $upload_dir = wp_upload_dir();
+  $image_directory = $upload_dir['basedir'] . '/hero';
+
+  $image_files = glob($image_directory . '/*.webp');
+
+  $random_image = $image_files[array_rand($image_files)];
+
+  return $upload_dir['baseurl'] . str_replace($upload_dir['basedir'], '', $random_image);
 }
-add_action('wp_enqueue_scripts', 'mota_scripts');

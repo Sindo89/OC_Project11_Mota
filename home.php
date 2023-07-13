@@ -5,7 +5,8 @@ get_header();
 <main>
 
   <section class="hero">
-    <img class="img-hero" src="https://picsum.photos/1440/962" />
+    <?php $hero_image = random_hero_image(); ?>
+    <img class="img-hero" src="<?php echo $hero_image; ?>" />
     <div class="content-hero">
       <h1 class="title-hero">PHOTOGRAPHE EVENT</h1>
     </div>

@@ -29,6 +29,7 @@ Text Domain: motaphoto
 }
 
 body {
+  max-width: 100vw;
   overflow-x: hidden;
   position: relative;
 }
@@ -240,9 +241,9 @@ li {
 
 .modal {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
+  top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
@@ -372,18 +373,19 @@ textarea {
   object-fit: cover;
 }
 
-.item-gallery {
+.item-gallery a {
   display: grid;
   grid-template-areas: "item";
 }
 
-.item-gallery > * {
+.item-gallery a > * {
   grid-area: item;
 }
 
 .item-overlay-gallery {
+  z-index: 500;
   opacity: 0;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: relative;
   display: flex;
   justify-content: center;

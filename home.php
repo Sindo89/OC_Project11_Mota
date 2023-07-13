@@ -50,23 +50,23 @@ get_header();
           <div class="item-gallery">
             <a href="<?php echo get_permalink(); ?>">
               <?php the_post_thumbnail('full'); ?>
-            </a>
 
-            <div class="item-overlay-gallery">
-              <span class="icon-fullscreen"></span>
-              <span class="icon-eye"></span>
-              <span class="photo-reference"><?php echo $reference; ?></span>
-              <span class="photo-category">
-                <?php
-                if ($categories && !is_wp_error($categories)) {
-                  foreach ($categories as $category) {
-                    echo $category->name;
+              <div class="item-overlay-gallery">
+                <span class="icon-fullscreen"></span>
+                <span class="icon-eye"></span>
+                <span class="photo-reference"><?php echo $reference; ?></span>
+                <span class="photo-category">
+                  <?php
+                  if ($categories && !is_wp_error($categories)) {
+                    foreach ($categories as $category) {
+                      echo $category->name;
+                    }
                   }
-                }
-                ?>
-              </span>
-            </div>
+                  ?>
+                </span>
+              </div>
           </div>
+          </a>
 
       <?php }
       }

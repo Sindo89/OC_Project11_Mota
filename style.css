@@ -354,39 +354,48 @@ textarea {
 /* GALLERY  */
 
 .gallery {
-  margin-top: 4rem;
+  width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .items-gallery {
-  width: 80%;
+  width: 60vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 4rem;
 }
 
-.item-gallery a img {
+.item-gallery {
   width: 564px;
   height: 495px;
+  position: relative;
+}
+
+.item-gallery img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .item-gallery a {
-  display: grid;
-  grid-template-areas: "item";
-}
-
-.item-gallery a > * {
-  grid-area: item;
+  z-index: 500;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .item-overlay-gallery {
-  z-index: 500;
   opacity: 0;
   transition: all 0.4s ease-in-out;
-  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -433,4 +442,111 @@ textarea {
   height: 3.4rem;
   background-image: url(/wp-content/themes/mota/assets/images/icon_fullscreen.png);
   background-size: cover;
+}
+
+.load-btn {
+  width: 272px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d8d8d8;
+  font-family: "Space Mono", monospace;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.load-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* DROPDOWN  */
+
+.dropdown {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+  width: 1150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-dropdown {
+  display: flex;
+}
+
+.categories-dropdown {
+  margin-right: 4rem;
+}
+
+.custom-select {
+  width: 260px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2rem;
+}
+
+.custom-select select {
+  display: none; /* masquer le select natif */
+}
+
+.select-selected {
+  background-color: white;
+  padding: 1rem;
+  font-weight: 700;
+  border: 1px solid #b8bbc2;
+  border-radius: 5px;
+  background: url(/wp-content/themes/mota/assets/images/arrow.png) no-repeat;
+  background-position: right 2rem center;
+}
+
+.select-selected.select-arrow-active {
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+  background: url(/wp-content/themes/mota/assets/images/arrow_selected.png)
+    no-repeat;
+  background-position: right 2rem center;
+}
+
+.select-items {
+  background-color: white;
+  position: absolute;
+  top: 95%;
+  left: 0;
+  right: 0;
+  z-index: 700;
+  border: 1px solid #b8bbc2;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.select-items div {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: var(--red-primary);
+  color: white;
+}
+
+.categories-dropdown select:focus option:first-child {
+  display: none;
+}
+
+.formats-dropdown select:focus option:first-child {
+  display: none;
+}
+
+.date-dropdown select:focus option:first-child {
+  display: none;
 }

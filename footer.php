@@ -1,4 +1,6 @@
 <footer class="site-footer">
+
+  <!-- Récupération du menu Footer -->
   <?php
   wp_nav_menu(
     array(
@@ -7,10 +9,15 @@
     )
   );
   ?>
+
+
 </footer>
+
+<!-- Récupération de la modal de contact  -->
 <?php
 get_template_part('./template-parts/contact');
 ?>
+
 <?php wp_footer(); ?>
 
 </div>

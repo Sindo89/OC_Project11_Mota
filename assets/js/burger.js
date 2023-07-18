@@ -6,13 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // BURGER MENU
   menuToggle.addEventListener("click", function () {
-    console.log("test");
-    menuOpen.classList.toggle("active");
-    menuMobile.classList.toggle("active");
+    // écouté le click sur le burger
+    menuOpen.classList.toggle("active"); // ajouter la class active sur le burger
+    menuMobile.classList.toggle("active"); // ajouter la class active sur le menu
   });
   menuToggleClose.addEventListener("click", function () {
-    console.log("test");
-    menuOpen.classList.remove("active");
-    menuMobile.classList.remove("active");
+    // écouté le click sur la croix
+    menuOpen.classList.remove("active"); // retirer la class active sur le burger
+    menuMobile.classList.remove("active"); // retirer la class active sur le menu
   });
 });

@@ -1,21 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //********************************************************************* //
+  //***********************| FENETRE MODALE |**************************** //
+  //********************************************************************* //
   const contactLink = document.querySelectorAll(".contact-btn a");
   const modal = document.querySelector(".modal");
 
   contactLink.forEach((item) => {
-    // Récupère chaque élément contactLink
+    // récupère chaque élément contactLink (bouton contact dans le menu desktop et mobile)
     item.addEventListener("click", function (event) {
-      // Ajoute un écouteur d'événement sur chaque élément
-      event.preventDefault(); // Empêche le comportement par défaut de l'événement
-      modal.style.display = "flex"; // Affiche la modal
+      // écoute le click sur chaque élément
+      event.preventDefault(); // empêche le comportement par défaut de l'événement
+      modal.style.display = "flex"; // affiche la modale
     });
   });
 
   window.addEventListener("click", function (event) {
-    // Ajoute un écouteur d'événement sur la fenêtre
+    // écoute le click sur la fenêtre
     if (event.target === modal) {
-      // Si l'événement est la modal
-      modal.style.display = "none"; // Cache la modal
+      // si la modale est ouverte et que l'utilisateur clique en dehors de la modale
+      modal.style.display = "none"; // on cache la modale
+    }
+  });
+
+  window.addEventListener("keydown", function (event) {
+    // écoute l'appui sur une touche du clavier
+    if (event.key === "Escape") {
+      // si la touche Echap est pressée
+      modal.style.display = "none"; // on cache la modale
     }
   });
 });

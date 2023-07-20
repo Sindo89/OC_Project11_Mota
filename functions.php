@@ -9,7 +9,7 @@ function mota_scripts()
   wp_enqueue_style('mota-mobile-style', get_template_directory_uri() . '/assets/css/mobile-style.css');
   wp_enqueue_script('mota-modal-scripts', get_template_directory_uri() . '/assets/js/modal.js');
   wp_enqueue_script('mota-burger-scripts', get_template_directory_uri() . '/assets/js/burger.js');
-  wp_enqueue_script('mota-dropdown-scripts', get_template_directory_uri() . '/assets/js/dropdown.js');
+  wp_enqueue_script('mota-gallery-scripts', get_template_directory_uri() . '/assets/js/gallery.js');
 }
 add_action('wp_enqueue_scripts', 'mota_scripts');
 
@@ -90,3 +90,33 @@ function random_hero_image()
 
   return $upload_dir['baseurl'] . str_replace($upload_dir['basedir'], '', $random_image);
 }
+
+
+/*
+ Bouton charger plus
+*/
+
+function load_more_photos()
+{
+  $args = array(
+    'post_type' => 'photos',
+    'posts_per_page' => 8,
+    'paged' => $_POST['paged'],
+  );
+
+  $photos = new WP_Query($args);
+
+  if ($photos->have_posts()) {
+    while ($photos->have_posts()) {
+      $photos->the_post();
+      get_template_part('template-parts/gallery-card'); // récupération du template gallery-card.php 
+    }
+  }
+
+  exit;
+}
+
+
+
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');

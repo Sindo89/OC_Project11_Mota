@@ -92,6 +92,9 @@ function random_hero_image()
 }
 
 
+
+
+
 /*
  Bouton charger plus
 */
@@ -100,8 +103,26 @@ function load_more_photos()
 {
   $args = array(
     'post_type' => 'photos',
-    'posts_per_page' => 8,
     'paged' => $_POST['paged'],
+    'posts_per_page' => 8,
+    'tax_query' => array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'categorie',
+        'field' => 'slug',
+        'terms' => $_POST['category'],
+      ),
+      array(
+        'taxonomy' => 'formats',
+        'field' => 'slug',
+        'terms' => $_POST['format'],
+      )
+    ),
+    'date_query' => array(
+      array(
+        'year' => $_POST['year'],
+      )
+    )
   );
 
   $photos = new WP_Query($args);
@@ -111,11 +132,11 @@ function load_more_photos()
       $photos->the_post();
       get_template_part('template-parts/gallery-card'); // récupération du template gallery-card.php 
     }
+    wp_reset_postdata();
   }
 
   exit;
 }
-
 
 
 add_action('wp_ajax_load_more_photos', 'load_more_photos');

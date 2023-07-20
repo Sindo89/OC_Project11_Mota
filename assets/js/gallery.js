@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const categorySelect = document.getElementById("category-select");
   const formatSelect = document.getElementById("format-select");
   const dateSelect = document.getElementById("date-select");
-  const galleryItems = document.querySelectorAll(".item-gallery");
 
   // écoute le changement de valeur des selects
   categorySelect.addEventListener("change", filterGallery);
@@ -16,41 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function filterGallery() {
     // récupère la valeur des selects
-    const selectedCategory = categorySelect.value;
-    const selectedFormat = formatSelect.value;
-    const selectedYear = dateSelect.value;
+    selectedCategory = categorySelect.value;
+    selectedFormat = formatSelect.value;
+    selectedYear = dateSelect.value;
 
-    galleryItems.forEach(function (item) {
-      // récupère les valeurs des attributs data
-      const itemCategory = item.getAttribute("data-category");
-      const itemFormat = item.getAttribute("data-format");
-      const itemYear = item.getAttribute("data-year");
-
-      // compare les valeurs des selects avec les valeurs des attributs data
-      const showCategory =
-        selectedCategory === "" || selectedCategory === itemCategory;
-      const showFormat = selectedFormat === "" || selectedFormat === itemFormat;
-      const showYear = selectedYear === "" || selectedYear === itemYear;
-
-      if (showCategory && showFormat && showYear) {
-        // si les valeurs correspondent
-        item.style.display = "block"; // Affiche l'élément s'il correspond aux sélections effectuées
-      } else {
-        // sinon
-        item.style.display = "none"; // Masque l'élément s'il ne correspond pas aux sélections effectuées
-      }
-    });
+    // envoie les valeurs des selects à la fonction ajaxRequest
+    ajaxRequest(selectedCategory, selectedFormat, selectedYear);
 
     if (
       // si tous les selects sont vides
-      categorySelect.value === "" &&
-      formatSelect.value === "" &&
-      dateSelect.value === ""
+      selectedCategory === "" &&
+      selectedFormat === "" &&
+      selectedYear === ""
     ) {
-      // affiche tous les éléments
-      galleryItems.forEach(function (item) {
-        item.style.display = "block";
-      });
+      // affiche seulement les photos de départ
     }
   }
 
@@ -155,18 +133,21 @@ document.addEventListener("DOMContentLoaded", function () {
       if (xhr.status === 200) {
         const response = xhr.responseText;
         itemsGallery.insertAdjacentHTML("beforeend", response);
-
-        const newPhotos = document.querySelectorAll(".item-gallery");
-        const expectedPhotosPerPage = 16;
-        if (newPhotos.length <= expectedPhotosPerPage) {
-          loadBtn.style.display = "none"; // Masquer le bouton s'il n'y a plus de photos à charger
-        }
       } else {
         console.error("Request failed. Error:", xhr.statusText);
       }
     });
 
-    let data = "action=load_more_photos" + "&paged=" + page;
+    let data =
+      "action=load_more_photos" +
+      "&paged=" +
+      page +
+      "&category=" +
+      selectedCategory +
+      "&format=" +
+      selectedFormat +
+      "&year=" +
+      selectedYear;
     xhr.send(data);
   }
 

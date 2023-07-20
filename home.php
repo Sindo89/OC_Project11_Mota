@@ -5,8 +5,6 @@ $args = array(
   'post_type' => 'photos',
   'paged' => 1,
   'posts_per_page' => 8,
-  'tax_query' => array(),
-  'date_query' => array(),
 );
 
 // requete WP_Query

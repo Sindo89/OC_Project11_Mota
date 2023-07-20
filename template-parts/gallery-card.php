@@ -33,12 +33,12 @@ if (get_the_date()) {
     <div class="item-overlay-gallery">
       <span class="icon-fullscreen"></span>
       <span class="icon-eye"></span>
-      <span class="photo-reference"><?php echo $reference; ?></span> <!-- Afficher la référence de la photo -->
+      <span class="photo-reference"><?php echo $reference; ?></span> <!-- afficher la référence de la photo -->
       <span class="photo-category">
         <?php
         if ($categories && !is_wp_error($categories)) {
           foreach ($categories as $category) {
-            echo $category->slug; // Afficher le slug de la catégorie
+            echo $category->slug; // afficher le slug de la catégorie
           }
         }
         ?>

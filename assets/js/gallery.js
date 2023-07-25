@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const categorySelect = document.getElementById("category-select");
   const formatSelect = document.getElementById("format-select");
   const dateSelect = document.getElementById("date-select");
+  const oldCategory = null;
 
   // écoute le changement de valeur des selects
   categorySelect.addEventListener("change", filterGallery);
@@ -19,8 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedFormat = formatSelect.value;
     selectedYear = dateSelect.value;
 
-    // envoie les valeurs des selects à la fonction ajaxRequest
-    ajaxRequest(selectedCategory, selectedFormat, selectedYear);
+    if (selectedCategory === oldCategory) {
+      return;
+    } else {
+      page = 1;
+      document.getElementById("items-gallery").innerHTML = "";
+      ajaxRequest(selectedCategory, selectedFormat, selectedYear);
+      oldCategory = selectedCategory;
+    }
 
     if (
       // si tous les selects sont vides
@@ -133,26 +140,30 @@ document.addEventListener("DOMContentLoaded", function () {
       if (xhr.status === 200) {
         const response = xhr.responseText;
         itemsGallery.insertAdjacentHTML("beforeend", response);
+        console.log(response);
       } else {
         console.error("Request failed. Error:", xhr.statusText);
       }
     });
 
-    let data =
-      "action=load_more_photos" +
-      "&paged=" +
-      page +
-      "&category=" +
-      selectedCategory +
-      "&format=" +
-      selectedFormat +
-      "&year=" +
-      selectedYear;
+    let data = "action=load_more_photos" + "&paged=" + page;
+    if (selectedCategory != "") {
+      data += "&category=" + selectedCategory;
+    }
+    if (selectedFormat != "") {
+      data += "&format=" + selectedFormat;
+    }
+    if (selectedYear != "") {
+      data += "&year=" + selectedYear;
+    }
     xhr.send(data);
   }
 
   loadBtn.addEventListener("click", function () {
     page++;
-    ajaxRequest();
+    selectedCategory = categorySelect.value;
+    selectedFormat = formatSelect.value;
+    selectedYear = dateSelect.value;
+    ajaxRequest(selectedCategory, selectedFormat, selectedYear);
   });
 });

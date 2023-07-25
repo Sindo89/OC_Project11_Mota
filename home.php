@@ -83,7 +83,7 @@ get_header();
     </div>
 
     <!-- Affichage des photos -->
-    <div class="items-gallery">
+    <div id="items-gallery" class="items-gallery">
       <?php
       if ($photos->have_posts()) {
         while ($photos->have_posts()) {

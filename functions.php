@@ -105,28 +105,35 @@ function load_more_photos()
     'post_type' => 'photos',
     'paged' => $_POST['paged'],
     'posts_per_page' => 8,
-    'tax_query' => array(
-      'relation' => 'AND',
-      array(
-        'taxonomy' => 'categorie',
-        'field' => 'slug',
-        'terms' => $_POST['category'],
-      ),
-      array(
-        'taxonomy' => 'formats',
-        'field' => 'slug',
-        'terms' => $_POST['format'],
-      )
-    ),
-    'date_query' => array(
+  );
+
+  if (isset($_POST['year'])) {
+    $args['date_query'] = array(
       array(
         'year' => $_POST['year'],
       )
-    )
-  );
+    );
+  }
+
+  if (isset($_POST['category'])) {
+    $args['tax_query'][] = array(
+
+      'taxonomy' => 'categorie',
+      'field' => "slug",
+      "terms" => $_POST['category'],
+    );
+  }
+
+  if (isset($_POST['format'])) {
+    $args['tax_query'][] = array(
+
+      'taxonomy' => 'formats',
+      'field' => "slug",
+      "terms" => $_POST['format'],
+    );
+  }
 
   $photos = new WP_Query($args);
-
   if ($photos->have_posts()) {
     while ($photos->have_posts()) {
       $photos->the_post();

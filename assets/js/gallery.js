@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const categorySelect = document.getElementById("category-select");
   const formatSelect = document.getElementById("format-select");
   const dateSelect = document.getElementById("date-select");
-  const oldCategory = null;
+  let oldCategory = null;
 
   // écoute le changement de valeur des selects
   categorySelect.addEventListener("change", filterGallery);
@@ -23,12 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedCategory === oldCategory) {
       return;
     } else {
+      itemsGallery.innerHTML = "";
       page = 1;
-      document.getElementById("items-gallery").innerHTML = "";
       ajaxRequest(selectedCategory, selectedFormat, selectedYear);
       oldCategory = selectedCategory;
     }
-
     if (
       // si tous les selects sont vides
       selectedCategory === "" &&
@@ -37,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // affiche seulement les photos de départ
     }
+    console.log(page);
   }
 
   //********************************************************************* //
@@ -139,8 +139,37 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
         const response = xhr.responseText;
+        itemsGallery.innerHTML = response;
+        console.log(response);
+        // masquer le bouton charger plus si un filtre est appliqué
+        loadBtn.style.display = "none";
+      } else {
+        console.error("Request failed. Error:", xhr.statusText);
+      }
+    });
+
+    let data = "action=load_more_photos" + "&paged=" + page;
+    if (selectedCategory != "") {
+      data += "&category=" + selectedCategory;
+    }
+    if (selectedFormat != "") {
+      data += "&format=" + selectedFormat;
+    }
+    if (selectedYear != "") {
+      data += "&year=" + selectedYear;
+    }
+    xhr.send(data);
+  }
+
+  function ajaxRequestLoadMore() {
+    xhr.open("POST", "wp-admin/admin-ajax.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        const response = xhr.responseText;
         itemsGallery.insertAdjacentHTML("beforeend", response);
         console.log(response);
+        loadBtn.style.display = "none";
       } else {
         console.error("Request failed. Error:", xhr.statusText);
       }
@@ -164,6 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedCategory = categorySelect.value;
     selectedFormat = formatSelect.value;
     selectedYear = dateSelect.value;
-    ajaxRequest(selectedCategory, selectedFormat, selectedYear);
+    ajaxRequestLoadMore(selectedCategory, selectedFormat, selectedYear);
   });
 });

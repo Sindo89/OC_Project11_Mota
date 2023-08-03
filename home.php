@@ -96,7 +96,7 @@ get_header();
 
     <!-- Bouton charger plus -->
     <div class="load-btn-container">
-      <button class="load-btn">Charger plus</button>
+      <button class="load-btn btn">Charger plus</button>
     </div>
   </section>
 </main>

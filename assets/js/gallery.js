@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const formatSelect = document.getElementById("format-select");
   const dateSelect = document.getElementById("date-select");
   let oldCategory = null;
+  let oldFormat = null;
+  let oldYear = null;
 
   // écoute le changement de valeur des selects
   categorySelect.addEventListener("change", filterGallery);
@@ -23,10 +25,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedCategory === oldCategory) {
       return;
     } else {
-      itemsGallery.innerHTML = "";
       page = 1;
+      itemsGallery.innerHTML = "";
       ajaxRequest(selectedCategory, selectedFormat, selectedYear);
       oldCategory = selectedCategory;
+    }
+    if (selectedFormat === oldFormat) {
+      return;
+    } else {
+      page = 1;
+      itemsGallery.innerHTML = "";
+      ajaxRequest(selectedCategory, selectedFormat, selectedYear);
+      oldFormat = selectedFormat;
+    }
+    if (selectedYear === oldYear) {
+      return;
+    } else {
+      page = 1;
+      itemsGallery.innerHTML = "";
+      ajaxRequest(selectedCategory, selectedFormat, selectedYear);
+      oldYear = selectedYear;
     }
     if (
       // si tous les selects sont vides
@@ -129,8 +147,8 @@ document.addEventListener("DOMContentLoaded", function () {
   //********************************************************************* //
 
   let page = 1;
-  const loadBtn = document.querySelector(".load-btn");
-  const itemsGallery = document.querySelector(".items-gallery");
+  const loadBtn = document.querySelectorAll(".load-btn");
+  const itemsGallery = document.querySelectorAll(".items-gallery");
   const xhr = new XMLHttpRequest();
 
   function ajaxRequest() {
@@ -141,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const response = xhr.responseText;
         itemsGallery.innerHTML = response;
         console.log(response);
-        // masquer le bouton charger plus si un filtre est appliqué
         loadBtn.style.display = "none";
       } else {
         console.error("Request failed. Error:", xhr.statusText);

@@ -16,6 +16,7 @@
 <!-- Récupération de la modal de contact  -->
 <?php
 get_template_part('./template-parts/contact');
+get_template_part('./template-parts/lightbox');
 ?>
 
 <?php wp_footer(); ?>

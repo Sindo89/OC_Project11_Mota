@@ -147,8 +147,8 @@ document.addEventListener("DOMContentLoaded", function () {
   //********************************************************************* //
 
   let page = 1;
-  const loadBtn = document.querySelectorAll(".load-btn");
-  const itemsGallery = document.querySelectorAll(".items-gallery");
+  const loadBtn = document.querySelector(".load-btn");
+  const itemsGallery = document.querySelector(".items-gallery");
   const xhr = new XMLHttpRequest();
 
   function ajaxRequest() {
@@ -159,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const response = xhr.responseText;
         itemsGallery.innerHTML = response;
         console.log(response);
+        // masquer le bouton charger plus si un filtre est appliqué
         loadBtn.style.display = "none";
       } else {
         console.error("Request failed. Error:", xhr.statusText);

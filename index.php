@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_header(); // récupération du template header.php
 ?>
 
 <main>
@@ -8,4 +8,4 @@ get_header();
 </main>
 
 <?php
-get_footer();
+get_footer(); // récupération du template footer.php

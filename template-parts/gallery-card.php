@@ -28,11 +28,12 @@ if (get_the_date()) {
   <!-- ajouter les attributs data-category, data-format et data-year à .item-gallery -->
 
   <?php the_post_thumbnail('full'); ?> <!-- afficher l'image -->
-  <a href="<?php echo get_permalink(); ?>"> <!-- lien vers la page de la photo -->
-
+  <div class="overlay-container">
     <div class="item-overlay-gallery">
       <span class="icon-fullscreen"></span>
-      <span class="icon-eye"></span>
+      <a href="<?php echo get_permalink(); ?>"> <!-- lien vers la page de la photo -->
+        <span class="icon-eye"></span>
+      </a>
       <span class="photo-reference"><?php echo $reference; ?></span> <!-- afficher la référence de la photo -->
       <span class="photo-category">
         <?php
@@ -44,5 +45,5 @@ if (get_the_date()) {
         ?>
       </span>
     </div>
-  </a>
+  </div>
 </div>

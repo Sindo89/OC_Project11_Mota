@@ -406,7 +406,7 @@ textarea {
   object-fit: cover;
 }
 
-.item-gallery a {
+.overlay-container {
   z-index: 500;
   display: block;
   width: 100%;
@@ -459,7 +459,7 @@ textarea {
   background-size: cover;
 }
 
-.icon-fullscreen {
+.item-gallery .icon-fullscreen {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -586,6 +586,21 @@ textarea {
 
 .singlecontent .right-single {
   width: 50%;
+  position: relative;
+}
+
+.right-single .item-overlay-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-icon-fullscreen {
+  width: 5.4rem;
+  height: 5.4rem;
+  background-image: url(/wp-content/themes/mota/assets/images/icon_fullscreen.png);
+  background-size: cover;
+  cursor: pointer;
 }
 
 .singlecontent .right-single img {
@@ -684,4 +699,240 @@ textarea {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+/* LIGHTBOX  */
+
+.lightbox-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox-content {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lightbox-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-text {
+  font-family: "poppins", sans-serif;
+  color: white;
+  width: 100%;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 85%;
+  object-fit: contain;
+}
+
+.lightbox-arrow {
+  font-family: "Space Mono", monospace;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.lightbox-arrow p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+}
+
+.lightbox-arrow-prev {
+  margin-right: 10rem;
+}
+
+.lightbox-arrow-next {
+  margin-left: 10rem;
+}
+
+.lightbox-content .arrow {
+  margin: 0 1rem;
+  display: flex;
+  height: 0.2rem;
+  width: 2rem;
+  position: relative;
+  background: white;
+  transition: all 0.4s;
+}
+
+.lightbox-content .arrow-right::before,
+.lightbox-content .arrow-right::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: white;
+  height: 0.2rem;
+  width: 0.6em;
+}
+
+.lightbox-content .arrow-right::before {
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+}
+
+.lightbox-content .arrow-right::after {
+  transform: rotate(-45deg);
+  transform-origin: right top;
+}
+
+.lightbox-content .arrow-left::before,
+.lightbox-content .arrow-left::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  height: 0.2rem;
+  width: 0.6em;
+}
+
+.lightbox-content .arrow-left::before {
+  transform: rotate(45deg);
+  transform-origin: left bottom;
+}
+
+.lightbox-content .arrow-left::after {
+  transform: rotate(-45deg);
+  transform-origin: left top;
+}
+
+.lightbox-arrow:hover .arrow {
+  width: 4rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background-image: url(/wp-content/themes/mota/assets/images/cross_white.png);
+  background-size: cover;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.lightbox-close:hover {
+  transform: rotate(25deg);
+}
+
+.single-lightbox-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.single-lightbox-content {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.single-lightbox-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.single-lightbox-image {
+  max-width: 100%;
+  max-height: 95%;
+  object-fit: contain;
+}
+
+.single-lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background-image: url(/wp-content/themes/mota/assets/images/cross_white.png);
+  background-size: cover;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.single-lightbox-close:hover {
+  transform: rotate(25deg);
+}
+
+/* ERREUR 404 */
+
+.error-404 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-404 img {
+  width: 20rem;
+  margin-bottom: 5rem;
+  animation: rotate 2s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-404 a {
+  box-shadow: inset 0 0 0 0 black;
+  color: black;
+  padding: 0 0.25rem;
+  margin: 0 -0.25rem;
+  transition: color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+}
+
+.error-404 a:hover {
+  color: #fff;
+  box-shadow: inset 400px 0 0 0 black;
 }

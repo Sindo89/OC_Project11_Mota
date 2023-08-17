@@ -20,6 +20,7 @@ function mota_scripts()
 add_action('wp_enqueue_scripts', 'mota_scripts');
 
 
+
 /*
  Paramètres du thème Mota
  */
@@ -31,12 +32,10 @@ function mota_setup()
 		*/
   add_theme_support('title-tag');
 
-
   /*
 Image mise en avant pour les articles
 		*/
   add_theme_support('post-thumbnails');
-
 
   /*
 Ajout d'un emplacement de menu
@@ -47,7 +46,6 @@ Ajout d'un emplacement de menu
       'menu-2' => esc_html__('Footer', 'mota'),
     )
   );
-
 
   /*
 		Activer la prise en charge du balisage HTML5
@@ -65,7 +63,6 @@ Ajout d'un emplacement de menu
     )
   );
 
-
   /*
 	 Permettre l'édition facile du logo
 	 */
@@ -82,22 +79,21 @@ Ajout d'un emplacement de menu
 add_action('after_setup_theme', 'mota_setup');
 
 
+
 /*
  Image aléatoire pour la section hero 
 */
 function random_hero_image()
 {
-  $upload_dir = wp_upload_dir();
-  $image_directory = $upload_dir['basedir'] . '/hero';
+  $upload_dir = wp_upload_dir(); // Récupère le dossier d'upload
+  $image_directory = $upload_dir['basedir'] . '/hero'; // Récupère le dossier hero
 
-  $image_files = glob($image_directory . '/*.webp');
+  $image_files = glob($image_directory . '/*.webp'); // Récupère tous les fichiers .webp du dossier hero
 
-  $random_image = $image_files[array_rand($image_files)];
+  $random_image = $image_files[array_rand($image_files)]; // Récupère une image aléatoire
 
-  return $upload_dir['baseurl'] . str_replace($upload_dir['basedir'], '', $random_image);
+  return $upload_dir['baseurl'] . str_replace($upload_dir['basedir'], '', $random_image); // Retourne l'url de l'image
 }
-
-
 
 
 
@@ -107,22 +103,22 @@ function random_hero_image()
 
 function load_more_photos()
 {
-  $args = array(
-    'post_type' => 'photos',
-    'paged' => $_POST['paged'],
-    'posts_per_page' => 8,
+  $args = array( // Arguments pour la requête
+    'post_type' => 'photos', // Type de post "photos"
+    'paged' => $_POST['paged'], // Page actuelle (à partir de laquelle on charge les posts)
+    'posts_per_page' => 8, // Nombre de posts par page (8 par défaut)
   );
 
-  if (isset($_POST['year'])) {
-    $args['date_query'] = array(
+  if (isset($_POST['year'])) { // Si l'année est définie dans les données envoyées par le formulaire
+    $args['date_query'] = array( // On ajoute l'année aux arguments
       array(
         'year' => $_POST['year'],
       )
     );
   }
 
-  if (isset($_POST['category'])) {
-    $args['tax_query'][] = array(
+  if (isset($_POST['category'])) { // Si la catégorie est définie dans les données envoyées par le formulaire
+    $args['tax_query'][] = array( // On ajoute la catégorie aux arguments
 
       'taxonomy' => 'categorie',
       'field' => "slug",
@@ -130,8 +126,8 @@ function load_more_photos()
     );
   }
 
-  if (isset($_POST['format'])) {
-    $args['tax_query'][] = array(
+  if (isset($_POST['format'])) { // Si le format est défini dans les données envoyées par le formulaire
+    $args['tax_query'][] = array( // On ajoute le format aux arguments
 
       'taxonomy' => 'formats',
       'field' => "slug",
@@ -139,18 +135,19 @@ function load_more_photos()
     );
   }
 
-  $photos = new WP_Query($args);
-  if ($photos->have_posts()) {
-    while ($photos->have_posts()) {
-      $photos->the_post();
-      get_template_part('template-parts/gallery-card'); // récupération du template gallery-card.php 
+  $photos = new WP_Query($args); // Requête WP_Query
+
+  if ($photos->have_posts()) { // Si il y a des posts
+    while ($photos->have_posts()) {  // et tant qu'il y a des posts
+      $photos->the_post(); // On passe au post suivant
+      get_template_part('template-parts/gallery-card'); // En utilisant mon template gallery-card.php 
     }
-    wp_reset_postdata();
+    wp_reset_postdata(); // On réinitialise la requête
   }
 
-  exit;
+  exit; // On arrête le script
 }
 
 
-add_action('wp_ajax_load_more_photos', 'load_more_photos');
-add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_load_more_photos', 'load_more_photos'); // On ajoute l'action pour les utilisateurs connectés
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos'); // On ajoute l'action pour les utilisateurs non connectés

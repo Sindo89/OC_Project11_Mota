@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var x, i, j, l, ll, selElmnt, a, b, c;
 
-  const dropdown = document.querySelectorAll(".dropdown"); // récupère tous les éléments avec la class dropdown
+  const dropdownContainer = document.querySelectorAll(".dropdown-container"); // récupère tous les éléments avec la class dropdown-container
   x = document.getElementsByClassName("custom-select"); // récupère tous les éléments avec la class custom-select
 
   l = x.length;
@@ -120,6 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
       closeAllSelect(this);
       this.nextSibling.classList.toggle("select-hide");
       this.classList.toggle("select-arrow-active");
+      if (window.matchMedia("(max-width: 1023px)").matches) {
+        if (this.classList.contains("select-arrow-active")) {
+          onSelectorOpen(this); // Appel de la fonction quand le select est ouvert
+        } else {
+          onSelectorClose(); // Appel de la fonction quand le select est fermé
+        }
+      }
     });
   }
 
@@ -147,8 +154,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
+  document.addEventListener("click", function (e) {
+    closeAllSelect(e.target); // Utilisation de l'élément cliqué pour fermer les sélecteurs
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      onSelectorClose(); // Appel de la fonction quand un élément est cliqué pour fermer les sélecteurs
+    }
+  });
 
-  document.addEventListener("click", closeAllSelect);
+  // pour la version mobile
+  function onSelectorOpen(selector) {
+    // Quand le select est ouvert
+    const scrollHeight = selector.scrollHeight;
+    const dropdownContainer = selector.closest(".dropdown-container");
+    dropdownContainer.style.height = scrollHeight - 11 + "rem"; // Ajuster la hauteur du conteneur en fonction de la taille du scroll
+  }
+
+  function onSelectorClose() {
+    const dropdownContainers = document.querySelectorAll(".dropdown-container");
+    dropdownContainers.forEach((container) => {
+      container.style.height = ""; // Rétablir la hauteur d'origine
+    });
+  }
 
   //********************************************************************* //
   //************************| CHARGER PLUS |***************************** //

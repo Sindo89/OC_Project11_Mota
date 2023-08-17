@@ -921,7 +921,7 @@ textarea {
   animation: rotate 2s ease-in-out infinite;
 }
 
-@-webkit-keyframes rotate {
+@keyframes rotate {
   0% {
     transform: rotate(0deg);
   }

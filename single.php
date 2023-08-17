@@ -58,7 +58,7 @@ get_header(); // récupération du template header.php
       <div class="left-single">
         <div class="photo-description">
           <h1><?php echo get_the_title(); ?></h1> <!-- récupère et affiche le titre de la photo -->
-          <p>référence : <?php echo $reference; ?></p> <!-- récupère et affiche la référence de la photo -->
+          <p class="reference-single" data-ref="<?php echo $reference; ?>">référence : <?php echo $reference; ?></p> <!-- récupère et affiche la référence de la photo -->
           <p class="category-single" data-id="<?php echo $current_photo_id; ?>" data-category="<?php echo $categorySlug; ?>">catégorie : <?php echo $categorySlug; ?></p> <!-- récupère et affiche le slug de la catégorie -->
           <p>format : <?php echo $formatSlug; ?></p> <!-- récupère et affiche le slug du format -->
           <p>type : <?php echo $type; ?></p> <!-- récupère et affiche le type de la photo -->
@@ -80,7 +80,7 @@ get_header(); // récupération du template header.php
     <!-- CONTACT -->
     <div class="singlecontact">
       <div class="left-single">
-        <p>Cette photo vous intéresse ?</p><button class="contact-btn btn">Contact</button>
+        <p>Cette photo vous intéresse ?</p><button class="contact-btn-single btn">Contact</button>
       </div>
 
       <!-- NAVIGATION ENTRE LES PHOTOS -->

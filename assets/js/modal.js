@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //********************************************************************* //
-  //***********************| FENETRE MODALE SINGLE |********************* //
+  //***********************| FENETRE MODALE SINGLE AVEC REF |********** * //
   //********************************************************************* //
+
+  const contactBtnSingle = document.querySelector(".contact-btn-single");
+  const refPhoto = document
+    .querySelector(".reference-single")
+    .getAttribute("data-ref");
+  const refField = document.querySelector(".ref-field");
+
+  contactBtnSingle.addEventListener("click", function (event) {
+    event.preventDefault(); // empêche le comportement par défaut de l'événement
+    refField.value = refPhoto;
+    modal.style.display = "flex";
+  });
 });

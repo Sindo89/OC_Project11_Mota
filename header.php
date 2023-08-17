@@ -36,7 +36,6 @@
     ?>
   </div>
 
-
   <div class="menu-open">
     <header class="site-header">
 

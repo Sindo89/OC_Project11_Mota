@@ -41,7 +41,7 @@ $args = array(
       'terms' => $categorySlug,
     ),
   ),
-  'post__not_in' => array($current_photo_id),
+  'post__not_in' => array($current_photo_id), // exclure la photo courante
 ); // arguments de la requete WP_Query
 
 // requete WP_Query
@@ -59,7 +59,7 @@ get_header(); // récupération du template header.php
         <div class="photo-description">
           <h1><?php echo get_the_title(); ?></h1> <!-- récupère et affiche le titre de la photo -->
           <p>référence : <?php echo $reference; ?></p> <!-- récupère et affiche la référence de la photo -->
-          <p>catégorie : <?php echo $categorySlug; ?></p> <!-- récupère et affiche le slug de la catégorie -->
+          <p class="category-single" data-id="<?php echo $current_photo_id; ?>" data-category="<?php echo $categorySlug; ?>">catégorie : <?php echo $categorySlug; ?></p> <!-- récupère et affiche le slug de la catégorie -->
           <p>format : <?php echo $formatSlug; ?></p> <!-- récupère et affiche le slug du format -->
           <p>type : <?php echo $type; ?></p> <!-- récupère et affiche le type de la photo -->
           <p>année : <?php echo $photoYear; ?></p> <!-- récupère et affiche l'année de publication -->
@@ -67,7 +67,7 @@ get_header(); // récupération du template header.php
       </div>
 
       <!-- PHOTO  -->
-      <div class="right-single">
+      <div class=" right-single">
         <div class="overlay-container">
           <div class="item-overlay-gallery">
             <span class="single-icon-fullscreen" data-fullscreen="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>"></span> <!-- récupère l'url de l'image en taille full pour la lightbox  -->

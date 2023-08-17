@@ -29,4 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none"; // on cache la modale
     }
   });
+
+  //********************************************************************* //
+  //***********************| FENETRE MODALE SINGLE |********************* //
+  //********************************************************************* //
 });

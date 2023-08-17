@@ -9,11 +9,15 @@ function mota_scripts()
   wp_enqueue_style('mota-mobile-style', get_template_directory_uri() . '/assets/css/mobile-style.css');
   wp_enqueue_script('mota-modal-scripts', get_template_directory_uri() . '/assets/js/modal.js');
   wp_enqueue_script('mota-burger-scripts', get_template_directory_uri() . '/assets/js/burger.js');
-  wp_enqueue_script('mota-gallery-scripts', get_template_directory_uri() . '/assets/js/gallery.js');
   wp_enqueue_script('mota-lightbox-scripts', get_template_directory_uri() . '/assets/js/lightbox.js');
+
+  if (is_home()) {
+    wp_enqueue_script('mota-gallery-scripts', get_template_directory_uri() . '/assets/js/gallery.js');
+  }
 
   if (is_single()) {
     wp_enqueue_script('mota-thumbnails-scripts', get_template_directory_uri() . '/assets/js/thumbnails.js');
+    wp_enqueue_script('mota-gallery-single-scripts', get_template_directory_uri() . '/assets/js/gallery-single.js');
   }
 }
 
@@ -102,11 +106,13 @@ function random_hero_image()
 */
 
 function load_more_photos()
+
 {
   $args = array( // Arguments pour la requête
     'post_type' => 'photos', // Type de post "photos"
     'paged' => $_POST['paged'], // Page actuelle (à partir de laquelle on charge les posts)
     'posts_per_page' => 8, // Nombre de posts par page (8 par défaut)
+    'post__not_in' => array(),
   );
 
   if (isset($_POST['year'])) { // Si l'année est définie dans les données envoyées par le formulaire
@@ -134,6 +140,7 @@ function load_more_photos()
       "terms" => $_POST['format'],
     );
   }
+
 
   $photos = new WP_Query($args); // Requête WP_Query
 

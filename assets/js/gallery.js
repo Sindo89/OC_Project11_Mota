@@ -12,35 +12,42 @@ document.addEventListener("DOMContentLoaded", function () {
   let oldYear = null;
 
   // écoute le changement de valeur des selects
-  categorySelect.addEventListener("change", filterGallery);
-  formatSelect.addEventListener("change", filterGallery);
-  dateSelect.addEventListener("change", filterGallery);
 
-  function filterGallery() {
+  categorySelect.addEventListener("change", function () {
+    filterGallery("category");
+  });
+  formatSelect.addEventListener("change", function () {
+    filterGallery("format");
+  });
+  dateSelect.addEventListener("change", function () {
+    filterGallery("date");
+  });
+
+  function filterGallery(e) {
     // récupère la valeur des selects
+    console.log(e);
     selectedCategory = categorySelect.value;
     selectedFormat = formatSelect.value;
     selectedYear = dateSelect.value;
-
-    if (selectedCategory === oldCategory) {
-      return;
-    } else {
+    currentSelect = e.id; // récupère l'id du select
+    if (
+      currentSelect === "category-select" && // si le select est celui des catégories et
+      selectedCategory !== oldCategory // si la valeur du select est différente de la valeur précédente
+    ) {
       page = 1;
       itemsGallery.innerHTML = "";
       ajaxRequest(selectedCategory, selectedFormat, selectedYear);
       oldCategory = selectedCategory;
     }
-    if (selectedFormat === oldFormat) {
-      return;
-    } else {
+
+    if (currentSelect === "format-select" && selectedFormat !== oldFormat) {
       page = 1;
       itemsGallery.innerHTML = "";
       ajaxRequest(selectedCategory, selectedFormat, selectedYear);
       oldFormat = selectedFormat;
     }
-    if (selectedYear === oldYear) {
-      return;
-    } else {
+
+    if (currentSelect === "date-select" && selectedYear !== oldYear) {
       page = 1;
       itemsGallery.innerHTML = "";
       ajaxRequest(selectedCategory, selectedFormat, selectedYear);
@@ -63,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var x, i, j, l, ll, selElmnt, a, b, c;
 
+  const dropdown = document.querySelectorAll(".dropdown"); // récupère tous les éléments avec la class dropdown
   x = document.getElementsByClassName("custom-select"); // récupère tous les éléments avec la class custom-select
 
   l = x.length;
@@ -98,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
               y[k].removeAttribute("class");
             }
             this.setAttribute("class", "same-as-selected");
-            filterGallery();
+            filterGallery(s); // appel de la fonction filterGallery avec en paramètre le select
             break;
           }
         }

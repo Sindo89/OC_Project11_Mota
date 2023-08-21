@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const lightboxClose = document.querySelectorAll(".lightbox-close");
 
   function openLightbox(index) {
+    // fonction qui affiche la lightbox
     currentPhotoIndex = index; // on stocke l'index de la photo courante
     const imageSrc = photos[index].querySelector("img").getAttribute("src"); // on récupère l'attribut src de l'image
     const lightboxImage = document.querySelector(".lightbox-image"); // on récupère l'élément lightbox-image
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   arrowPrev.addEventListener("click", function () {
+    // écoute le click sur la flèche précédente
     if (currentPhotoIndex > 0) {
       // si l'index de la photo courante est supérieur à 0
       openLightbox(currentPhotoIndex - 1); // on affiche la photo précédente
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   arrowNext.addEventListener("click", function () {
+    // écoute le click sur la flèche suivante
     if (currentPhotoIndex < photos.length - 1) {
       // si l'index de la photo courante est inférieur au nombre de photos - 1
       openLightbox(currentPhotoIndex + 1); // on affiche la photo suivante
@@ -75,8 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const lightboxSingle = document.querySelector(".single-lightbox-container");
   const fullscreenSingle = document.querySelectorAll(".single-icon-fullscreen");
   const lightboxImageSingle = document.querySelector(".single-lightbox-image");
+  const lightboxCloseSingle = document.querySelector(".single-lightbox-close");
 
   function openLightboxSingle(imageUrl) {
+    // fonction qui affiche la lightbox
     lightboxImageSingle.src = imageUrl; // on remplace l'attribut src de l'image de la lightbox par l'attribut src de l'image cliquée
     document.querySelector(".single-lightbox-container").style.display = "flex"; // on affiche la lightbox
   }
@@ -106,8 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "none"; // on cache la lightbox
     }
   });
-
-  const lightboxCloseSingle = document.querySelector(".single-lightbox-close");
 
   lightboxCloseSingle.addEventListener("click", function (event) {
     // écoute le click sur la croix de la lightbox

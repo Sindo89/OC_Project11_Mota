@@ -112,7 +112,6 @@ function load_more_photos()
     'post_type' => 'photos', // Type de post "photos"
     'paged' => $_POST['paged'], // Page actuelle (à partir de laquelle on charge les posts)
     'posts_per_page' => 8, // Nombre de posts par page (8 par défaut)
-    'post__not_in' => array(),
   );
 
   if (isset($_POST['year'])) { // Si l'année est définie dans les données envoyées par le formulaire
@@ -138,6 +137,12 @@ function load_more_photos()
       'taxonomy' => 'formats',
       'field' => "slug",
       "terms" => $_POST['format'],
+    );
+  }
+
+  if (isset($_POST['post__not_in'])) { // Si les posts à exclure sont définis dans les données envoyées par le formulaire
+    $args['post__not_in'] = array( // On ajoute les posts à exclure aux arguments
+      $_POST['post__not_in'],
     );
   }
 

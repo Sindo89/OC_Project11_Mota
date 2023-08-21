@@ -162,4 +162,20 @@
   .singlegallery h2 {
     margin: 3rem 0;
   }
+
+  /* MODALE DE CONTACT  */
+
+  .modal-container {
+    width: 80%;
+  }
+
+  .title-scroll {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .title-scroll p {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
 }

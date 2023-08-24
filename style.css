@@ -681,12 +681,13 @@ textarea {
 }
 
 .nav-link::after {
-  content: "->";
-  font-size: 2.4rem;
+  font-family: "Poppins", sans-serif;
+  content: ">";
+  font-size: 2.5rem;
 }
 
 .nav-link.prev::after {
-  content: "<-";
+  content: "<";
 }
 
 .singlegallery {

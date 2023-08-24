@@ -38,7 +38,7 @@ $args = array(
     array(
       'taxonomy' => 'categorie',
       'field' => 'slug',
-      'terms' => $categorySlug,
+      'terms' => $categorySlug, // récupère le slug de la catégorie
     ),
   ),
   'post__not_in' => array($current_photo_id), // exclure la photo courante
@@ -125,7 +125,6 @@ get_header(); // récupération du template header.php
       <div class="load-btn-container">
         <button class="load-btn btn">Charger plus</button>
       </div>
-      </section>
 </main>
 
 </div>
